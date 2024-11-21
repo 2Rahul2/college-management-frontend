@@ -3,11 +3,44 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Test from './Pages/Test';
+import FacultyDashboard from './Pages/FacultyDashboard';
+import NotFoundPage from './Pages/NotFoundPage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './Pages/Home';
+import { AuthProvider } from './context/AuthContext';
+import { ProtectedRoute } from './context/ProtectedRoute '
+import Login from './Pages/Login';
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Login />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/faculty-dashboard",
+    element: (
+        <FacultyDashboard />
+      // <ProtectedRoute>
+      // </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/home",
+    element: (
+        <Home />
+      // <ProtectedRoute>
+      // </ProtectedRoute>
+    ),
+  },
+]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+      <RouterProvider router={router} />
+    {/* <AuthProvider>
+    </AuthProvider> */}
   </React.StrictMode>
 );
 
