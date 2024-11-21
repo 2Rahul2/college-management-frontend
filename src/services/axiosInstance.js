@@ -29,7 +29,7 @@ const axiosInstance = axios.create({
     
 // Interceptor to dynamically set CSRF token in request headers
 axiosInstance.interceptors.request.use((config) => {
-    const csrfToken = getCookie('csrftoken');
+    var csrfToken = getCookie('csrftoken');
     if (csrfToken) {
         config.headers['X-CSRFToken'] = csrfToken; // Set CSRF token header
     }
