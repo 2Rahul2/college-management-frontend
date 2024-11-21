@@ -40,12 +40,14 @@ const AddStudents = ({notification}) => {
           if (response.ok) {
               const responseData = await response.json();
               console.log(responseData);
+              notification(false ,"Student added successfully")
           } else {
               console.log('Error:', response.statusText);
+            notification(false ,"Error adding student")
+
           }
 
-        console.log(response_data.data);
-            notification(false ,"Student added successfully")
+        // console.log(response_data.data);
           }catch{
             console.log("error during creation of user")
             notification(false ,"Error adding student")
