@@ -31,7 +31,7 @@ const AddStudents = ({notification}) => {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',  // Assuming you are sending JSON data
-                  'X-CSRFToken': csrfToken,  // Include CSRF token in the header
+                  'x-csrftoken:': csrfToken,  // Include CSRF token in the header
               },
               body: JSON.stringify(values),
               credentials: 'include',  // Important: This ensures cookies (like CSRF tokens) are included in the request
