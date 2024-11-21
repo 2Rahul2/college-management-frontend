@@ -25,30 +25,18 @@ const AddStudents = ({notification}) => {
             }
           
             const csrfToken = getCookie('csrftoken');
-            console.log(csrfToken)
 
             
-            const response = await fetch("https://college-management-backend-3eww.onrender.com/register/", {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',  // Assuming you are sending JSON data
-                  'X-CSRFToken:': csrfToken,  // Include CSRF token in the header
-              },
-              body: JSON.stringify(values),
-              credentials: 'include',  // Important: This ensures cookies (like CSRF tokens) are included in the request
-          });
-      
-          if (response.ok) {
-              const responseData = await response.json();
-              console.log(responseData);
-              notification(false ,"Student added successfully")
-          } else {
-              console.log('Error:', response.statusText);
-            notification(false ,"Error adding student")
+            const response_data = await axios.post("https://college-management-backend-3eww.onrender.com/register/", values, {
+            headers: {
+                'X-CSRFToken': csrfToken, // Include the CSRF token in the request
+                'Content-Type': 'application/json'
+            },
+            withCredentials:true,
+        });
 
-          }
-
-        // console.log(response_data.data);
+        console.log(response_data.data);
+            notification(false ,"Student added successfully")
           }catch{
             console.log("error during creation of user")
             notification(false ,"Error adding student")
