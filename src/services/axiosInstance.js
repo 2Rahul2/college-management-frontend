@@ -24,7 +24,7 @@ const csrfToken = getCookie('csrftoken');
 const axiosInstance = axios.create({
     baseURL: 'https://college-management-backend-3eww.onrender.com', // Set your base API URL
     headers: {
-        'X-CSRFToken':csrfToken, // Automatically include CSRF token
+        'X-CSRFToken':getCookie('csrftoken'), // Automatically include CSRF token
     },
     
     withCredentials: true, // Include cookies in cross-origin requests

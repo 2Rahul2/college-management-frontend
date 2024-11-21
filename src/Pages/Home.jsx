@@ -54,7 +54,7 @@ const Home = () => {
 
   const getRole = async () => {
     try {
-        const role = await axiosInstance.get("role/");
+        const role = await axiosInstance.get("/role/");
         if (role.data.is_faculty) {
             setFaculty(true);
             setStudent(false)
