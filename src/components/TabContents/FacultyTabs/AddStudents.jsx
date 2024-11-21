@@ -25,6 +25,7 @@ const AddStudents = ({notification}) => {
             }
           
             var csrfToken = getCookie('csrftoken');
+            console.log(csrfToken)
 
             
             const response = await fetch("https://college-management-backend-3eww.onrender.com/register/", {
