@@ -31,7 +31,7 @@ const AddStudents = ({notification}) => {
             headers: {
                 'X-CSRFToken': csrfToken, // Include the CSRF token in the request
             },
-            withCredentials:true
+            withCredentials:true,
         });
 
         console.log(response_data.data);
