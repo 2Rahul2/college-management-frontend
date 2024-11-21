@@ -30,7 +30,8 @@ const AddStudents = ({notification}) => {
             const response_data = await axios.post("https://college-management-backend-3eww.onrender.com/register/", values, {
             headers: {
                 'X-CSRFToken': csrfToken, // Include the CSRF token in the request
-            }
+            },
+            withCredentials:true
         });
 
         console.log(response_data.data);
