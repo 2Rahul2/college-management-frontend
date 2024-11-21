@@ -12,7 +12,7 @@ const AddStudents = ({notification}) => {
             function getCookie(name) {
               let cookieValue = null;
               if (document.cookie && document.cookie !== '') {
-                  var cookies = document.cookie.split(';');
+                  const cookies = document.cookie.split(';');
                   for (let i = 0; i < cookies.length; i++) {
                       const cookie = cookies[i].trim();
                       if (cookie.substring(0, name.length + 1) === (name + '=')) {
@@ -24,7 +24,7 @@ const AddStudents = ({notification}) => {
               return cookieValue;
             }
           
-            var csrfToken = getCookie('csrftoken');
+            const csrfToken = getCookie('csrftoken');
             console.log(csrfToken)
 
             
