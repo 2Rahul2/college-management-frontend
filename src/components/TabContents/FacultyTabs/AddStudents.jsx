@@ -27,12 +27,22 @@ const AddStudents = ({notification}) => {
             var csrfToken = getCookie('csrftoken');
 
             
-            const response_data = await axios.post("https://college-management-backend-3eww.onrender.com/register/", values, {
-            headers: {
-                'X-CSRFToken': csrfToken, // Include the CSRF token in the request
-            },
-            withCredentials:true,
-        });
+            const response = await fetch("https://college-management-backend-3eww.onrender.com/register/", {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',  // Assuming you are sending JSON data
+                  'X-CSRFToken': csrfToken,  // Include CSRF token in the header
+              },
+              body: JSON.stringify(values),
+              credentials: 'include',  // Important: This ensures cookies (like CSRF tokens) are included in the request
+          });
+      
+          if (response.ok) {
+              const responseData = await response.json();
+              console.log(responseData);
+          } else {
+              console.log('Error:', response.statusText);
+          }
 
         console.log(response_data.data);
             notification(false ,"Student added successfully")
