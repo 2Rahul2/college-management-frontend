@@ -54,17 +54,56 @@ const Home = () => {
 
   const getRole = async () => {
     try {
-        const role = await axiosInstance.get("/role/");
-        if (role.data.is_faculty) {
-            setFaculty(true);
-            setStudent(false)
-        } else {
-            setFaculty(false);
-            setStudent(true)
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
         }
+        return cookieValue;
+     }
+    
+    var csrfToken = getCookie('csrftoken');
+      // Get CSRF token from the cookie
+      // const csrfToken = getCSRFToken();
+  
+      // Make the GET request using normal axios
+      const role = await axios.get("https://college-management-backend-3eww.onrender.com/role/", {
+        headers: {
+          'X-CSRFToken': csrfToken, // Attach CSRF token
+        },
+        withCredentials: true, // Ensure cookies are sent
+      });
+  
+      // Handle the response
+      if (role.data.is_faculty) {
+        setFaculty(true);
+        setStudent(false);
+      } else {
+        setFaculty(false);
+        setStudent(true);
+      }
     } catch (error) {
-      console.log("getRole request canceled");
+      console.log("getRole request canceled", error);
     }
+    // try {
+    //     const role = await axiosInstance.get("/role/");
+    //     if (role.data.is_faculty) {
+    //         setFaculty(true);
+    //         setStudent(false)
+    //     } else {
+    //         setFaculty(false);
+    //         setStudent(true)
+    //     }
+    // } catch (error) {
+    //   console.log("getRole request canceled");
+    // }
   };
 
   useEffect(() => {
