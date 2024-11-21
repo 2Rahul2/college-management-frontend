@@ -7,8 +7,32 @@ const AddStudents = ({notification}) => {
       console.log('Success:', values);
       const create_student = async () => {
           try{
-            const response_data = await axiosInstance.post("/register/" ,values)
-            console.log(response_data.data)
+
+            function getCookie(name) {
+              let cookieValue = null;
+              if (document.cookie && document.cookie !== '') {
+                  var cookies = document.cookie.split(';');
+                  for (let i = 0; i < cookies.length; i++) {
+                      const cookie = cookies[i].trim();
+                      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                          break;
+                      }
+                  }
+              }
+              return cookieValue;
+            }
+          
+            var csrfToken = getCookie('csrftoken');
+
+            
+            const response_data = await axios.post("https://college-management-backend-3eww.onrender.com/register/", values, {
+            headers: {
+                'X-CSRFToken': csrfToken, // Include the CSRF token in the request
+            }
+        });
+
+        console.log(response_data.data);
             notification(false ,"Student added successfully")
           }catch{
             console.log("error during creation of user")
