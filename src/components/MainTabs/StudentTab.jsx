@@ -31,8 +31,6 @@ const StudentTab = () => {
 
     useEffect(() => {
         getUserId();
-
-      
     }, [studentId]);
 
 
