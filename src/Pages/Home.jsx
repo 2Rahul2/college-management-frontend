@@ -70,6 +70,7 @@ const Home = () => {
      }
     
     var csrfToken = getCookie('csrftoken');
+    console.log("csrf : " ,csrfToken)
       // Get CSRF token from the cookie
       // const csrfToken = getCSRFToken();
   
